@@ -5,7 +5,9 @@ LaTeX is a typesetting software that can be used in the preparation of all kinds
 This workshop will provide participants with an overview of what LaTeX is, what it is capable of, and what it can be used for. We will then proceed to take a closer look at the functionality and commands that enable participants to use the system on their own.
 
 ### Contact
+
 Co-Instructor and Maintainer: Allison Koh [(koh@hertie-school.org)](koh@hertie-school.org)
+
 Co-Instructor: Alexander Haarmann [(haarmann@hertie-school.org)](haarmann@hertie-school.org)
 
 
