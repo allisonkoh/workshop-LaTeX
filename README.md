@@ -6,8 +6,7 @@ This workshop will provide participants with an overview of what LaTeX is, what 
 
 ### Contact
 
-Co-Instructor and Maintainer: Allison Koh [(koh@hertie-school.org)](koh@hertie-school.org)
-
+Co-Instructor and Maintainer: Allison Koh [(koh@hertie-school.org)](koh@hertie-school.org)\\
 Co-Instructor: Alexander Haarmann [(haarmann@hertie-school.org)](haarmann@hertie-school.org)
 
 
