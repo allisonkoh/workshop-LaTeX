@@ -1,0 +1,451 @@
+%the option <draft> draws a box around overfull lines \& does not embed pictures
+\documentclass[a4paper,12pt,final]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage[british]{babel}
+%%\usepackage[british,dutch]{babel}
+
+\usepackage[right]{eurosym}
+%modern font family
+%\usepackage{mathpazo}
+\usepackage{libertine}
+%%font family similar to wingdings; can be called by using \ding{no} 
+%\usepackage{pifont}
+%%old fonts 
+\newfont{\suet}{suet14}
+\usepackage[varumlaut]{yfonts}
+%\usepackage{oldgerm}
+%%alternatives for umlaute using a superscript e
+%\usepackage[varumlaut]{yfonts}
+%%phonetics
+%\usepackage{tipa}
+%\usepackage{amssymb}
+%options for enumerations
+\usepackage{enumerate}
+%rotating text
+\usepackage{rotating}
+%package for setting different margins \& spacing
+\usepackage{setspace}
+%enables embedding pictures beyond *.eps
+\usepackage{graphicx}
+%enables text to wrap around figures 
+\usepackage{wrapfig}
+%underlines hyperlinks and sets different colour 
+\usepackage{hyperref}
+\usepackage{url}
+%enables setting margins 
+\usepackage[left=2.5cm,right=2cm,top=2cm,bottom=2.5cm]{geometry}
+%package for different boxes 
+\usepackage{fancybox}
+%enables spanning several rows/lines in tables 
+\usepackage{multirow}
+\usepackage{multicol}
+%enables setting spacing between tables \& figures and text 
+\usepackage{booktabs}
+%enables automatic line breaks in tables, makes handling of cell widt more comfortable
+\usepackage{tabularx}
+\usepackage{tabulary}
+%enables coloured cells in tables 
+\usepackage{colortbl}
+%enables different colours 
+\usepackage{color}
+\usepackage{xcolor}
+%enables line breaks in verbatim environment 
+\usepackage{spverbatim}
+%
+\usepackage{todonotes}
+%additional options for underlining text 
+\usepackage{ulem}
+%sets spacing between words 
+\setlength{\parskip}{2.0ex plus 0.5ex minus 0.5ex}
+\setlength\emergencystretch{3em} 
+
+\begin{document}
+%ändert sämtliche Überschriftsebenen in Serifen-Schriften!! nötig, da SCRartcl serifenlose verwendet!
+%\setkomafont{sectioning}{\normalcolor\bfseries}
+%\selectlanguage{dutch}
+\LARGE
+%\textfrak{Fraktur}
+%\textswab{Alte Schwäbische}
+%\textgoth{Gothisches:}
+%\suet{Sütterlin a wird anders: geschrieben}
+\noindent 
+A Preliminary List of the \\ Most Common \LaTeX{} Commands 
+
+\normalsize
+``\textit{Is {\LaTeX} hard to use?'' -- ``It's easy to use---if you're one of the 2\% of the population who thinks logically and can read an instruction manual. The other 98\% of the population will find it very hard or impossible to use.}'' (Leslie Lamport, the author of \LaTeX)
+
+\vspace{.8em}
+\large \textbf{Paragraphs}
+\normalsize 
+
+\textbackslash textbackslash - \textbackslash 
+
+\textbackslash \textbackslash \textsl{or} \textbackslash newline - new line
+
+\textbackslash par - new paragraph
+
+\textbackslash newpage - new page
+
+\textbackslash onecolumn - one column per page 
+
+\textbackslash twocolumn - two columns per page 
+
+\textbackslash singlespacing - single spacing 
+
+\textbackslash onehalfspacing - one and a half spacing 
+
+\textbackslash doublespacing - double spacing 
+
+\textbackslash noindent - the first line will not be indented 
+
+In case additional vertical space is needed enter \textbackslash vspace\lbrack height\rbrack, if you need horizontal space enter \textbackslash hspace \lbrack width\rbrack.
+
+sep\textbackslash -aration - suggests hyphenation between these letters, but does not switch off other possibilities %hyphenation will be executed exactly here, whereas the automatic hyphenation mode will be switched off for this word 
+
+%sep''aration - suggests hyphenation between these letters, but does not switch off other possibilities \\ \\
+
+
+\large \textbf{Special Characters}
+\normalsize
+
+
+%\textbackslash ae - \ae -- \textbackslash AE - \AE -- \textbackslash oe - \oe -- \textbackslash OE - \OE -- \textbackslash o - \o -- \textbackslash O - \O -- \textbackslash ''i - \"i 
+
+\textbackslash pounds - \pounds -- \textbackslash \$ - \$ -- \textbackslash \& - \& -- \textbackslash LaTeX - \LaTeX -- \textbackslash copyright - \copyright -- \textbackslash c\{c\} - \c{c} -- \textbackslash c\{C\} - \c{C} 
+
+\textbackslash ldots -- \ldots \\
+
+\textbackslash symbol\{no\} - enables different special characters in combination with the package \textsl{pifont} %entering the number of special characters \& symbols (cf. file 'SpecCharacters.pdf') 
+
+\newpage
+\large \textbf{Formatting}
+\normalsize
+
+\textbackslash textbf \{bold\} - \textbf{bold}
+
+\textbackslash textsl \{skewed\} - \textsl{skewed}
+
+\textbackslash textit \{italics\} - \textit{italics}
+
+\textbackslash emph \{emphasised:  result depends on documentclass\} - \emph{emphasised: result depends on documentclass (mostly underlined or italics)}
+
+\textbackslash textsc \{small caps\} - \textsc{small caps}
+
+\textbackslash uline \{underlined\} - \uline{underlined} (\textsl{requires ``ulem'' package})
+
+\textbackslash uuline \{double underlined\} - \uuline{double underlined} (\textsl{requires ``ulem'' package})
+
+\textbackslash uwave \{wavy underline\} - \uwave{wavy underline} (\textsl{requires ``ulem'' package})
+
+\textbackslash sout \{crossed out\} - \sout{crossed out} (\textsl{requires ``ulem'' package})
+
+\textbackslash textcolor\{red\}\{text\} - \textcolor{red}{produces coloured text} (\textsl{requires ``xcolor'' package})
+
+\textbackslash textsuperscript\{2\} - \textsuperscript{2}
+
+\textbackslash textsubscript\{2\} - \textsubscript{2}
+
+\textbackslash usepackage\lbrack left=2.5cm,right=2cm,top=2cm,bottom=2.5cm\rbrack\{geometry\} -- modifies margins \\
+
+
+\large\textbf{Back to normal\ldots}
+\normalsize
+
+\textbackslash normalsize -- switches back to standard font size 
+
+\textbackslash normalfont -- switches back to standard font 
+
+\textbackslash normalcolor -- switches back to black or predefined colour \\
+
+
+\large\textbf{Hierarchy of Headlines}
+\normalsize 
+
+\textbackslash part\{\ldots\} (only in book class)
+
+\textbackslash chapter\{\ldots\} (only in book, report, \& script class) 
+
+\textbackslash section\{\ldots\} 
+
+\textbackslash subsection\{\ldots\} 
+
+\textbackslash subsubsection\{\ldots\} 
+
+\textbackslash paragraph\{\ldots\} 
+
+\textbackslash subparagraph\{\ldots\} 
+
+\textbackslash section/subsubsection etc.*\{\ldots\} - * results in single headline without headline number; for global settings, there are more elegant solutions \\
+
+
+
+\newpage
+\large \textbf{Frames \& Enumerations}
+\normalsize
+
+\textbackslash mbox\{text\} - hidden box with text
+
+\textbackslash makebox[width][l|r|s]\{text\} - hidden box with given measurements with text 
+
+\textbackslash fbox\{text\} - \fbox{text within box}
+
+\textbackslash framebox[width][l|r|s]\{text\} - \framebox{text within box of given measurements \& alignment}
+
+centred is default! \\
+
+
+\textsl{(requires ``fancybox'' package)}
+
+\textbackslash fbox\{frame\} -\{frame\} - \fbox{frame}
+
+\textbackslash doublebox\{double frame\} - \doublebox{double frame}
+
+\textbackslash shadowbox\{frame with shadow\} - \shadowbox{frame with shadow}
+
+\textbackslash ovalbox\{oval frame\} - \ovalbox{oval frame}
+
+\textbackslash Ovalbox\{bold oval frame\} - \Ovalbox{bold oval frame} \\
+
+
+
+\large \textbf{A Helping Hand When Editing Longer Text}
+\normalsize
+
+Of course you can highlight your text or add a comment in \LaTeX as well! 
+
+\textbackslash textcolor\{red\}\{important to remember\} - \textcolor{red}{important to remember}
+
+\textbackslash marginpar\{remarks are written into page margin\} - \marginpar{remarks are written into page margin}
+
+\textbackslash todo\{remarks \textbackslash \& annotations in page margin\} - \todo{remarks \& annotations in page margin}
+
+The package ``latexdiff'' enables track changes in your document \& provides different options (requires Perl interpreter). 
+
+
+
+
+\newpage
+\large \textbf{Font Size \& Text rotation}
+\normalsize
+
+font sizes are always relative to the size preset in the preamble or in the document class 
+
+\textbackslash tiny\{smallest possible\} - \tiny{smallest possible} \normalsize
+
+\textbackslash scriptsize\{still small\} - \scriptsize{still small} \normalsize 
+
+\textbackslash footnotesize\{footnotesize small\} - \footnotesize{footnotesize small} \normalsize 
+
+\textbackslash small\{small\} - \small{small} \normalsize 
+
+\textbackslash normalsize - \normalsize{standard size, the size defined by the document class or in the preamble}
+
+\textbackslash large\{somewhat larger\} - \large{somewhat larger} \normalsize 
+
+\textbackslash Large\{even larger\} - \Large{even larger} \normalsize 
+
+\textbackslash LARGE\{large\} - \LARGE{large} \normalsize 
+
+\textbackslash huge\{huge\} - \huge{huge } \normalsize 
+
+\textbackslash Huge\{really huge\} - \Huge{really huge} 
+\normalsize \\
+
+
+\textbackslash begin\{rotate\}\{10\}\{rotates text with x°\} - \textbackslash end\{rotate\}- 
+\begin{rotate}{10} rotates text with x° \end{rotate} \\ \\ 
+
+
+\large \textbf{(Relative) Sizes} \normalsize
+
+usual \uline{absolute measures} are: cm, mm, pt, em (height \& width of standard character) 
+
+\uline{relative sizes}: <factor 0-1>\textbackslash textwidth - uses the defined fraction of the text width defined in the documentclass 
+
+ <factor 0-1>\textbackslash columnwidth - uses the defined fraction of the column width (in documents with several colums or in minipage environment) 
+
+<factor 0-1>\textbackslash pageheight - uses the defined fraction of the text height of the page defined in the documentclass 
+
+
+\newpage
+\large \textbf{Cross references}
+\normalsize
+
+\textbackslash label\{<\textsl{label name}>\} - defines cross reference marker; it is common to use abbreviations as prefixes to indicate what the label refers to: e.\,g. ``tab:OverviewInterviews'' (for tables), ``chap:Interviews'' (for chapters, sections etc.), \& ``fig:OverviewInterviews'' (for figures) 
+
+\textbackslash ref\{<\textsl{label name}>\} - inserts reference to  number of section/table/figure 
+
+\textbackslash pageref\{<\textsl{label name}>\} - inserts reference to page number of section/table/figure 
+
+\textbackslash vref\{<\textsl{label name}>\} - inserts reference to section/table/figure \& number of cross reference (requires \textsl{varioref} package) \\
+
+
+\large
+\textbf{References}
+\normalsize
+
+The commands used for references to the bibliography vary according to the bibliography package, the backend, and the style used. In general, there are different options: 
+\begin{itemize}
+	\item quotation within parenthesis 
+	\item quotation as footnotes 
+	\item quotation without parenthesis 
+\end{itemize}
+
+With the ``biblatex'' package, for instance, the commands look as follows: 
+
+\begin{itemize}
+	\item \textbackslash parencite\lbrack <added content prior to reference, e.\,g. ``cf.'', ``see'', ``amongst others'' etc.>\rbrack\lbrack page no.\rbrack\{\textsl{reference key}\}
+	\item \textbackslash parencites\lbrack<added content prior to reference>\rbrack \lbrack page no.\rbrack\{\textsl{reference key,reference key,\ldots}\} - used for several references; added content usually refers to the first reference 
+	\item \textbackslash textcite\lbrack<added content prior to reference>\rbrack \lbrack page no.\rbrack\{\textsl{reference key}\} - results in author's name in text, year of publication in parenthesis 
+	\item \textbackslash footcite\{\textsl{reference key}\}
+	\item \textbackslash cite\lbrack <added content prior to reference>\rbrack\lbrack page no.\rbrack\{\textsl{reference key}\}
+\end{itemize}
+
+content in squared brackets is optional \& might be left blank 
+
+
+\newpage
+\large \textbf{Graphics \& Footnotes}
+\normalsize
+
+If using PDF\LaTeX{} \& other more modern kernels are used (i.e. direct conversion to PDF) *.png, *.jpg, \& *.jpeg files can be used (requires ``graphicx'' package); is using the indirect/ ordinary \TeX/\LaTeX conversion only *.eps files can be implemented 
+
+\textbackslash includegraphics[width=4cm]\{<filename.eps/png/jpg>\} - inserts a graphic with 4cm of width 
+
+\textbackslash includegraphics[width=0.5 \textbackslash textwidth]\{<filename.eps/png/jpg>\} - inserts a graphic that is half the width of a standard line 
+
+\textbackslash includegraphics[height=4cm,angle=5]\{<filename.eps/png/jpg>\} - inserts a graphic of 4cm height and rotates it with 5° \\
+
+
+
+\textbackslash footnote\{text of the footnote\} - \footnote{text of the footnote} \\
+
+
+\large \textbf{Tables}
+\normalsize
+
+Basic tables are really easy to create: 
+
+\textbackslash begin\{table\}\lbrack hb\rbrack
+
+\textbackslash caption\{This table was really easy to create!\}
+
+\textbackslash footnotesize
+
+\textbackslash begin\{tabular\}{\l$|$c$|$r\} \textbackslash hline 
+
+The first cell is left-aligned\textbackslash ldots \& the second centred\textbackslash ldots \& the third right-aligned. \textbackslash\textbackslash \textbackslash hline 
+
+The double-backslash ends a line, \& the \textbackslash \& ends a cell entry, \textbackslash \& \& the \textbackslash textbackslash hline command draws a line.
+
+\textbackslash end\{tabular\}\textbackslash normalsize\textbackslash end\{table\}
+
+\begin{table}[hb]
+\caption{This table was really easy to create!}
+\footnotesize
+\begin{tabular}{l|c|r} \hline 
+The first cell is left-aligned\ldots & the second centered\ldots & the third right-aligned. \\ \hline 
+The double-backslash ends a line, & the \& ends a cell entry, \& & the \textbackslash hline command draws a line.
+\end{tabular}\normalsize\end{table}
+
+The main disadvantage is that there is no automatic line break in cells \& cell width is not optimised. 
+
+\newpage 
+More advanced tables require packages such as ``tabulary'', ``tabularx'' (allow for automatic line breaks \& width of rows), ``multirow'', \& ``multicol'' (enables content to span over several cells). 
+
+\begin{spverbatim}
+\begin{table}[htb!]
+\caption{Overview of Conducted Interviews}
+\label{tab:Interviews}
+\footnotesize
+\centering
+\begin{tabulary}{.9\textwidth}{L|L|L|r}
+\toprule 
+\rowcolor{green} No. of Interview & Category of Interview Partner & Organisation and/\,or Name & Date \\ \toprule
+1 & \multirow{2}[-6]{*} Bank & 1 Representative Bank of Scotland & March 2020 \\ 
+2 & & 1 Representative Santander & June 2021 \\ 
+3 & Interest Organisation & 1 Representative Transparency International & October 2021 \\ \bottomrule
+\end{tabulary}
+\end{table}
+\normalsize 
+\end{spverbatim}
+
+The squared brackets after the initial floating environment marker ``table'' ([htb!]) requests to position the table here, at the top, or at the bottom of the page. 
+
+\textbackslash rowcolor provides a background colour for the respective row. 
+
+After defining the width, the alignment of columns (c, l, r) is defined. Columns with letters in lowercase will not allow for automatic line break, which makes the column with the shortest text the most suitable candidate. Results are usually better, if at least one column is fixed. For columns with capital letters the column width and line breaks will be arranged automatically. After the command \textbackslash multirow the number of rows the cell should span is provided, the following number in square brackets provides a correction for misalignment of text in the following columns. In the following argument the format of the spanned column can be defined, while the asterisk indicates that the same alignment is used as defined for the column. The column that should be spanned is left empty in the following line. 
+
+
+\begin{table}[htb!]
+\caption{Overview of Conducted Interviews}
+\label{tab:Interviews}
+\footnotesize
+\centering
+\begin{tabulary}{.9\textwidth}{L|L|L|r}
+\toprule 
+\rowcolor{green} No. of Interview & Category of Interview Partner & Organisation and/\,or Name & Date \\ \toprule
+1 & \multirow{2}[-6]{*} Bank & 1 Representative Bank of Scotland & March 2020 \\ 
+2 & & 1 Representative Santander & June 2021 \\ 
+3 & Interest Organisation & 1 Representative Transparency International & October 2021 \\ \bottomrule
+\end{tabulary}
+\end{table}
+\normalsize
+
+\vspace{4em}
+Assembled by Alexander Haarmann (\href{mailto:haarmann@hertie-school.org}{email: haarmann@hertie-school.org})
+
+Feel free to adapt and amend the list according to your own needs!! -- In addition, take a look at Allison's introduction! Some of the commands are explained in more detail there. 
+
+%\newpage
+%\textbf{How to install!?}
+%
+%There is a wide variety of software you can use.\footnote{A nice overview of a larger number of software can be found \href{http://www.latex-community.org/forum}{here}!} After having installed the \TeX-package you could use whatever editor you want to. Nevertheless, using a specially designed \LaTeX-editor has the advantage that a lot of routines, links, and commands are added automatically or can be easily derived from a list, which considerably eases your work. 
+%
+%For Linux/ Unix the most known is probably \href{http://www.tug.org/texlive}{\TeX Live} in combination with the editor ``\href{http://kile.sourceforge.net/}{Kile}'', whereas Mac-Users often opt for the ``\href{http://www.tug.org/mactex/}{Mac\TeX}''-suite or \href{http://www.xm1math.net/texmaker/}{\TeX maker}.
+%
+%For Windows-based systems there is a large variety. An installation always consists of several steps (mind the order!): 
+%
+%\begin{enumerate}
+	%\item download \& install \href{http://www.ghostscript.com/}{Ghostscript}
+	%%\item download \& install \href{http://pages.cs.wisc.edu/~ghost/gsview/index.htm}{Ghostview}
+	%\item choose, download, \& install a \href{http://www.softonic.de/s/acrobat-reader-9}{PDF-viewer}\footnote{If using \TeX nicCenter \& Acrobat Reader please make sure to \textsl{not} upgrade the Acrobat Reader to version 10 as the interface between both programmes works much smoother in version number 9!}
+	%\item download \& install \href{http://miktex.org/}{MiK\TeX} or \href{http://www.tug.org/texlive}{\TeX Live}
+	%\item choose, download, \& install whatever \LaTeX-editor you prefer:\\ 
+	%\begin{itemize}
+	%\item one of the most comfortable ones is \href{http://www.lyx.org/}{LyX}, providing an interface similar to typical word processing software, 
+	%\item one of the most wide-spread ones is \href{https://www.texniccenter.org/download/}{\TeX nicCenter}, 
+	%\item with a lot of other options as amongst others such as\href{http://www.xm1math.net/texmaker/}{\TeX maker}; for a good overview, take a look at \href{https://beebom.com/best-latex-editors/}{here} or \href{https://en.wikipedia.org/wiki/Comparison_of_TeX_editors}{here} or any other comparative site\footnote{%
+	%Which one you prefer in the end is a matter of taste and preferences. I use \TeX nicCenter myself, as it can be adapted to most needs and is quite supportive for beginners as well as advanced user. If you prefer to not be bothered with too much code, LyX might be a good choice for you. My suggestion would be to install \TeX nicCenter and LyX in order to get a feeling for the differences and decide on whatever you prefer to use after the workshop. If you choose to stick to \TeX nicCenter, it makes sense to try a number of other editors as well.} 
+%\end{itemize}\end{enumerate}
+%
+%%Using a Windows based system, {\TeX}nicCenter (and probably other editors as well) will ask about the way to update packages. Please activate automatic updates here! The directory the editor is looking for during the installation can be found inside the Mik\TeX distribution: `root\textbackslash programme folder\textbackslash MikTeX-distribution folder\textbackslash MikTeX-folder inside the main directory\textbackslash bin (e.g.: C:\textbackslash Programs\textbackslash MiKTeX 2.9\textbackslash miktex\textbackslash bin). If using \TeX nicCenter 2 you need to replace the `\%bm' argument in the MakeIndex section of the profile output definition by `\%tm', as MakeIndex otherwise is not is not called correctly.\footnote{%
+%%`Build' $\rightarrow$ `Define Output Profiles' $\rightarrow$ LaTeX $\Rightarrow$ PDF $\rightarrow$ `command line arguments to pass to MakeIndex' $\rightarrow$ `\%tm'} 
+%As dictionaries and hyphenation-rules for other languages than English and German the \href{https://extensions.openoffice.org/de}{OpenOffice dictionaries} can be used.
+%
+%Disregarding the operating systems, you might want to choose a reference manager compatible to Bib\TeX, the standard interface for \TeX using any references: 
+%%For Linux/ Unix for instance this could be \href{http://www.unix-ag.uni-kl.de/~fischer/kbibtex/}{KBib\TeX} or 
+%Most prominent is the platform independent \href{http://jabref.org/}{JabRef}, for which there is also a plugin for MS-Word. If you want to keep the reference manager you have been using so far, an increasing number of reference managers, such as Citavi and Zotero, can be used in combination with\LaTeX. As JabRef's import function is pretty good, importing your database to JabRef on a regular basis, nevertheless, might prove to be a good option.
+%
+%
+%\vspace{1.5em}
+%\textbf{Tools}
+%
+%\begin{itemize}
+	%%\item \href{http://latex2rtf.sourceforge.net/}{\LaTeX 2rtf} converts a \LaTeX-document into an rtf-file
+	%\item Best offline converter from PDF to doc/rtf: \href{https://unipdf.com}{UniPDF}
+	%\item \href{http://www.ee.ic.ac.uk/hp/staff/dmb/perl/index.html}{Bib\TeX 4Word} is a simple plugin that helps you to use JabRef databases in MS-word. 
+	%\item \href{https://docear.org/software/download/}{Docear4Word} is a more user-friendly and sophisticated wrapper to use JabRef databases in MS-word.
+	%\item \href{https://www.libreoffice.org}{LibreOffice} is not only a full-grown office-suite, but also offers functions like an import-filter for PFD-files. It also provides the plugin {Writer2\LaTeX}, which provides some basic formatting for texts you want to use in {\LaTeX} but were previously set up in MS-Word or other word processing software. 
+	%%\item \href{http://www.ctan.org/tex-archive/help/Catalogue/entries/latable.html}{LaTable} is a tool which helps you getting the code for somewhat more complicated tables. It perfectly delivers basic tables and those making use of the package `multicolumn', does not support, however, the `multirow' package. 
+	%\item {Excel2\LaTeX} and {Calc2\LaTeX} are respecive plugins to set a table in MS-Excel and LibreOffice Calc respectively and create \LaTeX code from there. 
+	%%\item There are numerous tools to count the number of words in your documents (difficult to leave the commands out of the counting procedure, so make sure that you count the compiled PDF-file! important for most journal articles!). \href{http://www.heise.de/software/download/wordcount/73302}{WordCount} is my preferred one so far, as it seems to be pretty reliable. 
+	%\item A \href{http://en.wikipedia.org/wiki/Help:Displaying_a_formula}{compendium} of special characters and math symbols.
+	%%\item A \href{http://de.wikibooks.org/wiki/LaTeX-Wörterbuch:_InDeX}{list} of a larger number of \LaTeX-commands (unfortunately, only in German).
+%\end{itemize}
+%
+%
+
+\end{document}
+
