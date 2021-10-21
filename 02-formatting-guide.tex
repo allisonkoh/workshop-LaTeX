@@ -1,0 +1,886 @@
+\documentclass[11pt]{article}
+
+% The basics
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[margin=.75in]{geometry}
+
+% Additional packages
+\usepackage{
+    graphics, % dealing with figures
+    graphicx, % additional commands for dealing with figures
+    lipsum, % dummy text (short for lorem ipsum)
+    listings, % to create environments for verbatim text blocks
+    xcolor, % text color
+    enumitem, % customize itemized lists (I mostly use it for removing spaces between items)
+    hyperref, % links
+    float, % forcing figure placement [H]
+    setspace, % line spacing
+    booktabs, % offers an alternative syntax for generating tables
+    natbib, % custom commands for reference management
+    subfig % position multiple figures into one figure env
+}
+
+% Create a new environment for displaying code blocks
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codepurple},
+    keywordstyle=\color{black},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+% Define new environment to illustrate an example
+\newenvironment{boxed}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    {
+    \\\\\hline
+    \end{tabular}
+    \end{center}
+    }
+
+% Set spacing between paragraphs
+\setlength{\parskip}{0.3em}
+
+% Title, author, date
+\title{A Gentle Introduction to \LaTeX:\\Formatting Basics}
+\author{Allison Koh and Alexander Haarmann}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{Plan for this session}
+
+Now that we have gained some familiarity with what {\LaTeX} \emph{is}, we are going to cover how to work with Overleaf and the basics of formatting:
+
+\begin{itemize}[noitemsep]
+    \item Getting started with Overleaf
+    \item Document structure
+    \item Environments
+    \item Formatting documents and text
+    \item Lists
+    \item Figures
+    \item Tables
+    \item Equations
+    \item Citations and cross-referencing
+    \item Working with templates
+\end{itemize}
+
+\paragraph{NOTE:} This guide is \textit{not} meant to be a comprehensive overview of everything you can do in \LaTeX. We will cover some of the basics you need to get started with typesetting in this session, and suggest some resources for learning more.
+
+\section*{Getting started with Overleaf}
+
+When starting a project in Overleaf, you'll often do one of the following:
+
+\begin{enumerate}
+    \item Start a new project from scratch \\
+        \includegraphics[width = 0.6\textwidth]{course-material/img/new-proj.png}
+    \item Choose from one of Overleaf's many templates (\href{https://www.overleaf.com/latex/templates}{https://www.overleaf.com/latex/templates})
+    \item Upload a template from other sources (e.g. conferences, journals)%\\\includegraphics[width = 0.5\textwidth]{course-material/img/overleaf-templates.png}
+\end{enumerate}
+
+% Create a new project.
+
+% \begin{center}
+%     \includegraphics[width = \textwidth]{course-material/img/new-proj.png}
+% \end{center}
+\newpage
+\section*{Document structure}
+
+Every {\LaTeX} document has a \textbf{preamble} and a \textbf{body}, which contain the following information:
+
+\begin{enumerate}[nolistsep,noitemsep]
+    \item The \textbf{preamble} contains information on the \textit{document class} (e.g. article, presentation, book) and \textit{front matter} (e.g. definitions, packages, settings).\\\includegraphics[width = 0.45\textwidth]{course-material/img/document-preamble.png}
+    \item The document \textbf{body} contains information on the \textit{main matter}, or the content used to produce output.\\\includegraphics[width = 0.45\textwidth]{course-material/img/document-body.png}
+\end{enumerate}
+
+\section*{Environments}
+
+\paragraph{What are environments?} Environments are used for blocks (e.g. text, table, figure) in documents. You can use pre-set environments or create your own.
+
+\paragraph{Environments are defined by opening and closing tags.} Opening tags start with \verb|\begin{}| and closing tags start with \verb|\end{}|.
+
+\paragraph{EXAMPLE:} Environment with centered text
+
+\begin{lstlisting}
+\begin{center}
+Hello, here is some text without a meaning. This text should show what a printed text will look like at this place. If you read this text, you will get no information. Really? Is there no information? Is there a difference between this text and some nonsense like ``Huardest gefburn''? Kjift -- not at all!
+\end{center}
+\end{lstlisting}
+
+\begin{center}
+Hello, here is some text without a meaning. This text should show what a printed text will look like at this place. If you read this text, you will get no information. Really? Is there no information? Is there a difference between this text and some nonsense like ``Huardest gefburn''? Kjift -- not at all!
+\end{center}
+
+\paragraph{Using packages enables you to work with additional environments.} While you can customize formatting by defining environments\footnote{See appendix.}, it is worth looking into whether it already exists in a CTAN package.
+
+% \paragraph{ADD:} Details on new environments by using packages
+
+\section*{Formatting documents and text}
+
+\subsection*{Sections}
+
+\paragraph{{\LaTeX} can organize documents into chapters and sections.} Levels of depth are:
+
+\begin{itemize}[noitemsep]
+    \item \verb|\part{}|
+    \item \verb|\chapter{}|
+    \item \verb|\section{}|
+    \item \verb|\subsection{}|
+    \item \verb|\subsubsection{}|
+    \item \verb|\paragraph{}|
+    \item \verb|\subparagraph{}|
+\end{itemize}
+
+\noindent In most (/shorter) documents, \verb|\section{}| is the top-level command.
+
+\paragraph{Numbered vs. unnumbered sections.} By default, the \verb|\section{}| command will return a numbered section. Sometimes, you don't want that. For unnumbered sections, use the \verb|\section*{}| command.
+
+\subsection*{Paragraphs}
+
+To start a new paragraph, leave a blank line in between two blocks of text.
+
+\paragraph{EXAMPLE:} Two paragraphs
+
+% \noindent Code:
+
+\begin{lstlisting}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa  qui officia deserunt mollit anim id est laborum.
+
+    Duis non convallis orci, a pellentesque nunc. Fusce ac odio justo. Nullam et ullamcorper sapien, nec consequat augue. Duis facilisis quam ut est convallis laoreet. Vestibulum porta magna lectus, ac ultricies mi vulputate nec. Nunc quis cursus ipsum. Suspendisse vel maximus libero. Fusce rutrum rutrum mi ultricies gravida. Cras vel malesuada velit. Praesent risus libero, cursus in odio ut, bibendum tincidunt diam. Mauris iaculis congue sapien non consectetur. Aliquam porta nec lacus ut porta. In vestibulum bibendum elit sed dapibus. Morbi posuere imperdiet lacus.
+
+\end{lstlisting}
+
+% \noindent Result:
+
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa  qui officia deserunt mollit anim id est laborum.
+
+    Duis non convallis orci, a pellentesque nunc. Fusce ac odio justo. Nullam et ullamcorper sapien, nec consequat augue. Duis facilisis quam ut est convallis laoreet. Vestibulum porta magna lectus, ac ultricies mi vulputate nec. Nunc quis cursus ipsum. Suspendisse vel maximus libero. Fusce rutrum rutrum mi ultricies gravida. Cras vel malesuada velit. Praesent risus libero, cursus in odio ut, bibendum tincidunt diam. Mauris iaculis congue sapien non consectetur. Aliquam porta nec lacus ut porta. In vestibulum bibendum elit sed dapibus. Morbi posuere imperdiet lacus.
+
+\paragraph{Paragraph alignment.} Paragraphs are justified by default, which means that space is added between words to make sure that each line is aligned with both margins. If you don't want your text to be justified, it is possible to center (\verb|center|), left align (\verb|flushleft|), and right align (\verb|flushright|) your text.
+\\\vspace{0.7em}
+
+\hrule
+\paragraph{EXERCISE:} Let's try out what we learned! Using your paper/writing sample:
+
+\begin{enumerate}[noitemsep]
+    \item Open this project and make a copy: \href{https://bit.ly/3lTe6UX}{https://bit.ly/3lTe6UX}
+    \item Rename the title and add your name as author.
+    \item Create a new section titled ``Introduction'', and paste in the first paragraph of your paper. 
+    \item Create a second section, and paste in the first two paragraphs from the body section of your paper.
+\end{enumerate}
+\\\vspace{0.5em}
+\hrule
+
+
+\subsection*{Spacing lines, paragraphs, and pages}
+
+% To start a new line in \LaTeX, use this at the end of a line: \verb|\\|. \\
+% A simple way to add extra space between lines is: \verb|\\~\\|. \\~\\
+% To start a new page, add \verb|\newpage| in the line above the first line of the page you want to start.
+
+Commonly used constructions for spacing in \LaTeX are listed in Table \ref{tab:spacing}.
+
+% Table generated by Excel2LaTeX from sheet 'Sheet1'
+\begin{table}[htbp]
+  \centering
+  \caption{Common spacing constructions}
+    \begin{tabular}{ll}
+    \toprule
+    command & result \\
+    \midrule
+    \verb|\newpage| & starts a new page at the specified point \\
+    \verb|\newline| & ends a line without justifying the text \\
+    \verb|\linebreak| & ends a line and justifies it \\
+    \verb|\ | &  add space between words\\
+    \verb|\hspace| & adds horizontal space of a given size \\
+    \verb|\vspace| & adds vertical space of a given size\\
+    \verb|\smallskip| & adds a little extra vertical space between paragraphs \\
+    \verb|\medskip| & adds some extra vertical space between paragraphs \\
+    \verb|\bigskip| & adds a lot of extra vertical space between paragraphs \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:spacing}%
+\end{table}%
+
+\subsection*{Line spacing}
+
+You can use the \verb|setspace| package to change the spacing in your document.
+
+\begin{itemize}[noitemsep]
+    \item \verb|\doublespacing|
+    \item \verb|\onehalfspacing|
+    \item \verb|\setstretch{1.25}| (custom spacing)
+\end{itemize}
+
+\paragraph{NOTE:} Indicate line spacing for an entire document after the \verb|\documentclass{}| line. Changing line spacing for part of a document occurs within the text.
+
+\paragraph{Paragraph spacing.} You can change the default spacing between paragraphs with the following \verb|\setlength{}| commands in the preamble after the \verb|\documentclass{}| line:
+
+\begin{lstlisting}
+    \setlength{\parindent}{4em}
+    \setlength{\parskip}{1em}
+\end{lstlisting}
+
+% \paragraph{EXAMPLE:} Single spacing part of a document
+
+% \begin{lstlisting}
+% \begin{singlespace}
+% Hello, here is some text without a meaning. This text should show what a printed text will look like at this place. If you read this text, you will get no information. Really? Is there no information? Is there a difference between this text and some nonsense like ``Huardest gefburn''? Kjift -- not at all!
+% \end{singlespace}
+% \end{lstlisting}
+
+% \begin{singlespace}
+% Hello, here is some text without a meaning. This text should show what a printed text will look like at this place. If you read this text, you will get no information. Really? Is there no information? Is there a difference between this text and some nonsense like ``Huardest gefburn''? Kjift -- not at all!
+% \end{singlespace}
+
+\subsection*{Footnotes}
+
+Adding footnotes to your document is relatively straight forward; add the \verb|\footnote{}| command in-line.
+
+\paragraph{EXAMPLE:} Footnotes
+
+\begin{lstlisting}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\footnote{Id velit ut tortor pretium. Vitae ultricies leo integer malesuada nunc vel}.
+\end{lstlisting}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\footnote{Id velit ut tortor pretium. Vitae ultricies leo integer malesuada nunc vel}.
+
+% \subsection*{Quotation marks and Dashes}
+
+% \paragraph{Quotation marks.}
+
+% \paragraph{Dashes.}
+
+\section*{Text formatting}
+
+\paragraph{Font styles.} As with other types of documents, simple text formatting helps to emphasize parts of the text. In {\LaTeX}, you can emphasize text in \textbf{bold}, \textit{italic}, \underline{underlined}, and \texttt{monospace}. You can also combine commands to yield (for example) \textbf{\textit{bold and italic}} text. You can also format text as \textsuperscript{superscript} or \textsubscript{subscript}.
+
+\paragraph{EXAMPLE:} commands used to emphasize text
+
+\begin{lstlisting}
+\textit{Lorem ipsum dolor sit amet},
+\textbf{consectetur adipiscing elit}.
+\underline{Praesent volutpat dictum commodo}.
+\textsc{Mauris dignissim sagittis orci eu viverra}.
+Maecenas sollicitudin libero vel augue blandit hendrerit.
+\texttt{Praesent id blandit orci}.
+\textbf{\textit{Proin velit mauris, fermentum vitae ornare ut, vulputate et augue}}.
+\textsubscript{Mauris a eros et velit tempus commodo. In hac habitasse platea dictumst.}
+\textsuperscript{Suspendisse sodales purus nec nisl dapibus tristique. Suspendisse potenti.}
+\end{lstlisting}
+\textit{Lorem ipsum dolor sit amet}, % Italic
+\textbf{consectetur adipiscing elit}. % Bold
+\underline{Praesent volutpat dictum commodo}. % Underlined
+\textsc{Mauris dignissim sagittis orci eu viverra}. % Small caps
+Maecenas sollicitudin libero vel augue blandit hendrerit. \texttt{Praesent id blandit orci}. % Monospace
+\textbf{\textit{Proin velit mauris, fermentum vitae ornare ut, vulputate et augue}}.
+\textsubscript{Mauris a eros et velit tempus commodo. In hac habitasse platea dictumst.}
+\textsuperscript{Suspendisse sodales purus nec nisl dapibus tristique.}
+
+\paragraph{Text size.} You \normalsize can also change the (relative) size of text in your document, from \Huge \verb|\Huge| \normalsize to \tiny \verb|\tiny|. \normalsize
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.4\textwidth]{course-material/img/text-size.png}
+    \caption{Reference sheet for text sizes (Source: texblog)}
+    \label{fig:textsize}
+\end{figure}
+
+% \\\Huge \verb|\Huge|, \huge \verb|\huge|, \LARGE \verb|\LARGE|, \Large \verb|\Large|, \large \verb|\large|, \normalsize \verb|\normalsize|, \small \verb|\small|, \footnotesize \verb|\footnotesize|, \scriptsize \verb|\scriptsize|, and \tiny \verb|\tiny|.
+
+% \begin{itemize}[noitemsep]
+%     \item \Huge \verb|\Huge| \normalsize
+%     \item \huge \verb|\huge| \normalsize
+%     \item \LARGE \verb|\LARGE| \normalsize
+%     \item \Large \verb|\Large| \normalsize
+%     \item \large \verb|\large| \normalsize
+%     \item \verb|\normalsize| \normalsize
+%     \item \small \verb|\small| \normalsize
+%     \item \footnotesize \verb|\footnotesize| \normalsize
+%     \item \scriptsize \verb|\scriptsize| \normalsize
+%     \item \tiny \verb|\tiny| \normalsize
+% \end{itemize}
+
+\section*{Lists}
+
+{\LaTeX} has several environments for lists---ordinal (numbered), unordered (bullet points), and nested. The different types of lists are illustrated in the following examples.
+
+\paragraph{Ordered lists} use the \verb|\enumerate{}| environment:
+\begin{lstlisting}
+\begin{enumerate}
+    \item This is the first item.
+    \item This is the second item.
+\end{enumerate}
+\end{lstlisting}
+
+\begin{enumerate}
+    \item This is the first item.
+    \item This is the second item.
+\end{enumerate}
+
+\paragraph{Unordered lists} use the \verb|\itemize{}| environment:
+\begin{lstlisting}
+\begin{itemize}
+    \item Red
+    \item Yellow
+    \item Blue
+\end{itemize}
+\end{lstlisting}
+
+\begin{itemize}
+    \item Red
+    \item Yellow
+    \item Blue
+\end{itemize}
+
+\paragraph{Nested lists} can use any combination of ordered or unordered lists:
+\begin{lstlisting}
+\begin{enumerate}
+    \item This is the first item.
+        \begin{itemize}
+            \item Red
+            \item Yellow
+        \end{itemize}
+    \item This is the second item.
+        \begin{itemize}
+            \item Blue
+            \item Green
+        \end{itemize}
+\end{enumerate}
+\end{lstlisting}
+
+\begin{enumerate}
+    \item This is the first item.
+        \begin{itemize}
+            \item Red
+            \item Yellow
+        \end{itemize}
+    \item This is the second item.
+        \begin{itemize}
+            \item Blue
+            \item Green
+        \end{itemize}
+\end{enumerate}
+
+\paragraph{NOTE:} You can \textbf{reduce the line spacing in lists} by using the \verb|enumitem| package. Add \verb|\usepackage{enumitem}| to your preamble to enable this option in your workflow. For example:
+
+\begin{lstlisting}
+\begin{enumerate}[noitemsep]
+    \item This is the first item.
+    \item This is the second item.
+\end{enumerate}
+\end{lstlisting}
+
+\begin{enumerate}[noitemsep]
+    \item This is the first item.
+    \item This is the second item.
+\end{enumerate}
+\vspace{1.5em}
+% \newpage
+\hline
+\paragraph{EXERCISE:} Let's add on to what we started in our projects:
+
+\begin{enumerate}[noitemsep]
+    \item Double space the entire document.
+    \item Add a footnote.
+    \item Emphasize some of the text in your document in \textbf{bold}.
+    \item Increase the size of your title.
+    \item Generate a list.
+\end{enumerate}
+\\\vspace{0.5em}
+\hline
+
+
+\section*{Figures}
+
+The environment for adding in figures is as follows:
+
+\begin{lstlisting}
+\begin{figure}
+    \centering
+    \includegraphics{FIGURE_PATH}
+    \caption{CAPTION}
+    \label{fig:MY_LABEL}
+\end{figure}
+\end{lstlisting}
+
+\noindent The three parts of this environment are:
+
+\begin{itemize}[noitemsep,nolistsep]
+    \item \textbf{Figure path:} The relative path of your image
+    \item \textbf{Caption} placed above/below the figure (depending on where it is in the figure environment)
+    \item \textbf{Figure label} for cross-referencing a figure in your text (we'll get to this later).
+\end{itemize}
+
+\paragraph{Sizing.} The figure you're loading in is usually not the size you want it to be in your document. In the \verb|\includegraphics{}| line of your figure environment, you can specify the width and/or height of a figure.
+
+\noindent You can specify the width of a figure relative to the width of a text:
+\begin{lstlisting}
+\begin{figure}
+    \centering
+    \includegraphics[width = 0.7\textwidth]{FIGURE_PATH}
+    \caption{CAPTION}
+    \label{fig:MY_LABEL}
+\end{figure}
+
+\end{lstlisting}
+
+\paragraph{Positioning.} {\LaTeX} puts figures and tables into \textit{floats}, which are containers for content that cannot be broken over a page. Unless specified otherwise, the algorithm determines the optimal placement of a float on the page and the text around it. This can be annoying at first until you get the hang of it, but consider this: Isn't it \textit{more} annoying when a Word document is ruined because an image was moved by a centimeter? \\~\\
+\noindent There are some ways to ``friendly force'' {\LaTeX} to comply with your wishes, such as the commands \texttt{h} (here),  \texttt{t} (top),  \texttt{b} (bottom), and  \texttt{p} (page). If you \textit{really} want {\LaTeX} to place a figure in a particular spot, add a \texttt{!} to the end. {\LaTeX} may still refuse to comply with your wishes if it thinks a figure is better placed elsewhere.
+\begin{lstlisting}
+\begin{figure}[h!]
+\end{lstlisting}
+\noindent If you want to go a step further and force an image to be fixed in the exact spot it is placed in your document, use the \verb|float| package. Add \verb|\usepackage{float}| to your preamble, and add \verb|[H]| to the beginning of your figure environment to force the placement of a figure:
+\begin{lstlisting}
+\begin{figure}[H]
+\end{lstlisting}
+
+\paragraph{EXAMPLE:} Putting everything we've learned about figures together
+
+\begin{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.7\textwidth]{course-material/img/prf1-major.png}
+    \caption{Performance across classes for a text classifier}
+    \label{fig:prf1-major}
+\end{figure}
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.7\textwidth]{course-material/img/prf1-major.png}
+    \caption{Performance across classes for a text classifier}
+    \label{fig:prf1-major}
+\end{figure}
+
+\section*{Tables}
+
+Programming tables in {\LaTeX} from scratch is not very straightforward. Examine the code below to understand the basic logic:
+
+\begin{enumerate}[nolistsep,noitemsep]
+    \item The \texttt{tabular} is wrapped into a \texttt{table} float.
+    \item Then follows a formatting operator, which tells the program to center the tabular on within the float.
+    \item Upon initializing the tabular, we tell {\LaTeX} how many columns there are (3), that they should be right (r), center (c), and center (c) oriented, and that we want vertical lines ($|$).
+    \item Finally, we include the body of each row, with the \texttt{\&} symbol delimiting the content for each cell. Below, see the code that is used to create Table \ref{tab_prison}.
+\end{enumerate}\\\vspace{1.5em}
+\begin{lstlisting}
+\begin{table}[!htbp]
+  \centering
+  \caption{The classic ``Prisoner's Dilemma''}
+    \begin{tabular}{|l|c|c|}
+    \hline
+    {\bf Player I / Player II} & Cooperate & Defect \\
+    \hline
+    Cooperate & (5,5) & (-10, 10) \\
+    \hline
+    Defect & (10,-10) & (-5,-5) \\
+    \hline
+    \end{tabular}
+  \label{tab_prison}
+\end{table}
+\end{lstlisting}
+
+\begin{table}[!htbp]
+  \centering
+  \caption{The classic ``Prisoner's Dilemma''}
+    \begin{tabular}{|l|c|c|}
+    \hline
+    {\bf Player I / Player II} & Cooperate & Defect \\
+    \hline
+    Cooperate & (5,5) & (-10, 10) \\
+    \hline
+    Defect & (10,-10) & (-5,-5) \\
+    \hline
+    \end{tabular}
+  \label{tab_prison}
+\end{table}
+
+\paragraph{Best practices for tables.} The best way to intuitively understand formatting tabular material is to either (1) copy good examples or (2) use a tool that makes table generation easier. Some of these tools are:
+
+\begin{itemize}[nolistsep,noitemsep]
+    \item \href{https://www.tablesgenerator.com/}{Tables Generator}: A website for manually constructing tables
+    \item \href{https://ctan.org/pkg/excel2latex?lang=en}{Excel2LaTeX}: A macro for generating {\LaTeX} tables from MS Excel
+    \item The \texttt{stargazer} package in \texttt{R}
+    \item The \texttt{esttab} and \texttt{estout} commands in Stata
+\end{itemize}
+
+\paragraph{EXAMPLE:} Summary statistics table created by \texttt{stargazer}
+
+\begin{lstlisting}
+    % Table created by stargazer v.5.2 by Marek Hlavac, Harvard University. E-mail: hlavac at fas.harvard.edu
+    % Date and time: Wed, May 02, 2018 - 11:28:28 PM
+    \begin{table}[!htbp] \centering
+     \caption{Summary statistics table created by the \texttt{stargazer} package in \texttt{R}.}
+     \label{}
+    \begin{tabular}{@{\extracolsep{5pt}}lccccc}
+    \\[-1.8ex]\hline
+    \hline \\[-1.8ex]
+    Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\
+    \hline \\[-1.8ex]
+    rating & 30 & 64.633 & 12.173 & 40 & 85 \\
+    complaints & 30 & 66.600 & 13.315 & 37 & 90 \\
+    privileges & 30 & 53.133 & 12.235 & 30 & 83 \\
+    learning & 30 & 56.367 & 11.737 & 34 & 75 \\
+    raises & 30 & 64.633 & 10.397 & 43 & 88 \\
+    critical & 30 & 74.767 & 9.895 & 49 & 92 \\
+    advance & 30 & 42.933 & 10.289 & 25 & 72 \\
+    \hline \\[-1.8ex]
+    \multicolumn{6}{l}{\textit{Source}: \href{https://mran.revolutionanalytics.com/snapshot/2018-05-03/web/checks/check_results_stargazer.html}{\texttt{stargazer} package documentation}}\\
+    \end{tabular}
+    \end{table}
+\end{lstlisting}
+
+\begin{table}[H] \centering
+     \caption{Summary statistics table created by the \texttt{stargazer} package in \texttt{R}.}
+     \label{}
+    \begin{tabular}{@{\extracolsep{5pt}}lccccc}
+    \\[-1.8ex]\hline
+    \hline \\[-1.8ex]
+    Statistic & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{St. Dev.} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max} \\
+    \hline \\[-1.8ex]
+    rating & 30 & 64.633 & 12.173 & 40 & 85 \\
+    complaints & 30 & 66.600 & 13.315 & 37 & 90 \\
+    privileges & 30 & 53.133 & 12.235 & 30 & 83 \\
+    learning & 30 & 56.367 & 11.737 & 34 & 75 \\
+    raises & 30 & 64.633 & 10.397 & 43 & 88 \\
+    critical & 30 & 74.767 & 9.895 & 49 & 92 \\
+    advance & 30 & 42.933 & 10.289 & 25 & 72 \\
+    \hline \\[-1.8ex]
+    \multicolumn{6}{l}{\textit{Source}: \href{https://mran.revolutionanalytics.com/snapshot/2018-05-03/web/checks/check_results_stargazer.html}{\texttt{stargazer} package documentation}}\\
+    \end{tabular}
+\end{table}
+
+\section*{Equations}
+
+One of the biggest advantages of using {\LaTeX} is its capacity for math typesetting\footnote{For the most common math symbols, see \url{http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html}.}. Equations and math symbols can either be written in-line using the \$ sign as a wrapper, or as their own environments.
+
+\paragraph{Mathematical symbols.} To enter math symbols, you either:
+
+\begin{enumerate}[nolistsep,noitemsep]
+    \item enter them directly from the keyboard (e.g.: =, <, >), or
+    \item use a command (e.g. \verb|\leq| stands for $\leq$)
+\end{enumerate}\\\vspace{1em}
+
+\noindent You can also reference Greek letters by typing a backslash \verb|\| followed by the name of the letter.\\For example: \verb|\alpha| yields $\alpha$
+
+\paragraph{Simple math formulas.} Listed here are some of the most commonly used constructions for mathematical formulas.
+
+% Table generated by Excel2LaTeX from sheet 'Sheet1'
+\begin{table}[htbp]
+  \centering
+  \caption{Commonly used constructions in math formulas}
+    \begin{tabular}{lll}
+    \toprule
+    command & example & result \\
+    \midrule
+    \verb|^{}| & \verb|x^{2}| & $x^{2}$ \\
+    \verb|_{}| & \verb|x_{2}| & $x_{2}$ \\
+    \verb|\frac{}{}| & \verb|\frac{1}{2}| & $\frac{1}{2}$ \\
+    \verb|\sqrt{}| & \verb|\sqrt{9}| & $\sqrt{9}$ \\
+    \verb|\sum_{}^{}| & \verb|\sum_{k=1}^{n}k| & $\sum_{k=1}^{n}k$ \\
+    \verb|\int_{}^{}| & \verb|\int{0}^{1}x\,dx| & $\int{0}^{1}x\,dx$ \\
+    \verb|\lim_{}| & \verb|\lim_{x\to0}e^x| & $\lim_{x\to0}e^x$ \\
+    \verb|\ln| & \verb|\ln x| & $\ln x$ \\
+    \verb|\cos| & \verb|\cos| & $\cos$\\
+    \verb|\pi| & \verb|\pi r^{2}| & $\pi r^{2}$ \\
+    \verb|\infty| & \verb|+\infty| & $+\infty$ \\
+    \verb|\varepsilon| & \verb|x_{2} + \varepsilon| & $x_{2} + \varepsilon$ \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:addlabel}%
+\end{table}%
+
+\newpage
+\paragraph{In-line equations.} Below is an example of a short, in-line equation.
+
+\begin{lstlisting}
+The formula for the Pythagorean theorem is: $a^{2} + b^{2} = c^{2}$.
+\end{lstlisting}
+
+The formula for the Pythagorean theorem is: $a^{2} + b^{2} = c^{2}$.
+
+\paragraph{Math environments.} Like figures and tables, equations can also be set in their own environments. Below are a few examples of math environments.
+% using the formula for term frequency-inverse document frequency weighting (TFIDF)---a formula that defines the ``importance'' of a word in a text corpus---as an equation situated in a math environment.
+
+\noindent The \verb|displaymath| environment displays an equation on its own line.
+\begin{lstlisting}
+\begin{displaymath}
+{TFIDF}_{t,d} = (1 +\log tf_{t,d}) \cdot \log \frac{N}{df_t}
+\end{displaymath}
+\end{lstlisting}
+
+\begin{displaymath}
+{TFIDF}_{t,d} = (1 +\log tf_{t,d}) \cdot \log \frac{N}{df_t}
+\end{displaymath}
+
+\noindent The \verb|equation| environment numbers the formula, which can be useful for cross-referencing\footnote{We will revisit cross-referencing tables/figures/equations later.}.
+
+\begin{lstlisting}
+\begin{equation}
+{TFIDF}_{t,d} = (1 +\log tf_{t,d}) \cdot \log \frac{N}{df_t}
+\end{equation}
+\end{lstlisting}
+
+\begin{equation}
+{TFIDF}_{t,d} = (1 +\log tf_{t,d}) \cdot \log \frac{N}{df_t}
+\end{equation}
+
+\paragraph{NOTE:} Like tables, generating equations isn't the most intuitive. Instead of writing equations from scratch, I usually use an online equation editor (e.g.: \url{https://latex.codecogs.com/}).
+
+\newpage
+\hrule
+\paragraph{EXERCISE:} Let's add some figures, tables, and equations to our document.
+\begin{enumerate}[noitemsep]
+    \item Upload figures from your paper to your Overleaf project in the \verb|figures/| folder.
+    \item Insert the figure into your paper.
+    \item Generate a table, and add it to your paper. This can be done in any way you'd like.
+    \item Recreate the following equation: $y = x_1\beta_1 + x_2\beta_2 + \varepsilon$
+\end{enumerate}\\\vspace{0.7em}
+\hrule
+
+
+\section*{Academic writing with {\LaTeX}}
+
+{\LaTeX} allows for the integration of bibliographies, and the capacity to cross-reference items by their label. With this workflow, a lot of time is saved when dealing with citations, tables, figures, and equations.
+
+\subsection*{Citations}
+
+The steps to include bibliographies in your documents are as follows:
+
+\begin{enumerate}[nolistsep,noitemsep]
+    \item Specify the desired citation format.
+    \item Specify the \texttt{.bib} file from which the bibliography is drawn, using the \verb|\bibliography{}| command.
+\end{enumerate}
+
+\noindent Often placed at the end of the document\footnote{Bibliography code is placed at the end of a document \textit{unless} appendix material is included.}, these steps look like the following:
+
+\begin{lstlisting}
+\bibliographystale{apsr}
+\bibliography{bibliography.bib}
+\end{lstlisting}
+
+\paragraph{{\LaTeX} packages for citation management.} There are several packages available in {\LaTeX} for citation management. Most journals use \verb|bibtex| and \verb|natbib|\footnote{BibTeX is the original citation management software for formatting lists of references in {\LaTeX}, while \texttt{natbib} is a package for customizing citations while using BibTeX.}. Others might use \verb|biblatex| if providing localization in several languages is important for the compilation of a document. In this session, we'll review commands from the \texttt{natbib} package for citation management. Table \ref{tab:natbib} outlines the most commonly used commands from this package.
+
+\paragraph{References in the BibTeX format.} To cite your references in-text, there needs to be a corresponding entry in your \texttt{*.bib} file. You can generate entries in several ways, including:
+\begin{itemize}[nolistsep,noitemsep]
+    \item Copying the BibTeX entry from Google Scholar
+    \item Generating references with reference mangement software (e.g. Zotero, Mendeley)
+\end{itemize}
+
+% Table generated by Excel2LaTeX from sheet 'Sheet1'
+\begin{table}[htbp]
+  \centering
+  \caption{The most common natbib commands}
+    \begin{tabular}{ll}
+    \toprule
+    command & result \\
+    \midrule
+    \verb|\citet{xie2018r}| & \citet{xie2018r} \\
+    \verb|\citep{xie2018r}| & \citep{xie2018r} \\
+    \verb|\citep[chap. 2]{xie2018r}| & \citep[chap. 2]{xie2018r} \\
+    \verb|\citep[see][]{xie2018r}| & \citep[see][]{xie2018r} \\
+    \verb|\cite[see][chap. 2]{xie2018r}| & \cite[see][chap. 2]{xie2018r} \\
+    \verb|\citet*{xie2018r}| & \citet*{xie2018r} \\
+    \verb|\citep*{xie2018r}| & \citep*{xie2018r} \\
+    \verb|\citep{xie2018r, lamport1986latex}| & \citep*{xie2018r, lamport1986latex} \\
+    % \verb|\citeauthor{lamport1986latex}| & \citeauthor{lamport1986latex} \\
+    \bottomrule
+    \multicolumn{2}{l}{\textit{Note:} The exact format of in-text citations match the citation style specified in a document.}
+    \end{tabular}%
+  \label{tab:natbib}%
+\end{table}%
+
+
+
+\newpage
+\paragraph{EXAMPLE:} In-text citations
+
+\begin{lstlisting}
+Building on the {\LaTeX} software developed by \citet{lamport1986latex}, \citet{xie2018r} developed the ``R Markdown'' document format for typesetting documents in multiple formats.
+\end{lstlisting}
+
+\noindent Building on the {\LaTeX} software developed by \citet{lamport1986latex}, \citet{xie2018r} developed the ``R Markdown'' document format for typesetting documents in multiple formats.
+
+\begin{lstlisting}
+There are several ways to typeset documents across multiple formats \citep[e.g.][]{lamport1986latex,xie2018r}.
+\end{lstlisting}
+
+\noindent There are several ways to typeset documents across multiple formats \citep[e.g.][]{lamport1986latex,xie2018r}.
+
+\subsection*{Cross-referencing}
+
+It is possible to refer to sections, figures, tables, and equations using the \verb|\label| and \verb|\ref| commands. This is especially useful when you are not sure what the order your tables or figures might be in; the numbers that reference each item will automatically update with cross-referencing in {\LaTeX}.
+
+\paragraph{EXAMPLE:} Cross-referencing figures
+
+\noindent Figure \ref{fig:hertie-logo} has the label \verb|fig:hertie-logo|, as shown below:
+
+\begin{lstlisting}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{course-material/img/hertie-logo.png}
+    \caption{The Hertie School logo}
+    \label{fig:hertie-logo}
+\end{figure}
+\end{lstlisting}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{course-material/img/hertie-logo.png}
+    \caption{The Hertie School logo}
+    \label{fig:hertie-logo}
+\end{figure}
+
+\noindent Referencing this figure in-line would look something like this:
+
+\begin{lstlisting}
+Figure \ref{fig:hertie-logo} illustrates the Hertie School logo.
+\end{lstlisting}
+
+\noindent Figure \ref{fig:hertie-logo} illustrates the Hertie School logo.
+\newpage
+\hrule
+\paragraph{EXERCISE:} Let's cite and cross-reference some things:
+\begin{enumerate}[noitemsep]
+    \item Add a BibTeX entry to the \verb|bibliography.bib| file.
+    \item Reference this entry somewhere in your text.
+    \item Add a label to your figure.
+    \item Cross-reference your figure in the text.
+\end{enumerate}
+\vspace{0.7em}
+\hrule
+
+\section*{Working with templates}
+
+It is often easier to start with a template when using {\LaTeX}. Useful resources for finding templates are:
+
+\begin{itemize}[nolistsep,noitemsep]
+    \item The Overleaf Gallery: \url{https://www.overleaf.com/gallery/}
+    \item LaTeX Templates: \url{http://www.latextemplates.com/cat/articles}
+    \item Your university (if they have templates)
+    \item Official conference/journal websites
+    \item Google (normally a last resort)
+    \item GitHub (sometimes, usually better for Markdown/RMarkdown templates)
+    \item Friends and colleagues!
+\end{itemize}
+
+\paragraph{How to work with templates.} You can use Overleaf templates to start projects on the platform. Otherwise, most templates can be downloaded through zip files. Some tips and tricks for templates:
+
+\begin{itemize}[noitemsep]
+    \item Take note of the comments the template author wrote (if any)
+    \item When in doubt, leave the style files alone!
+    \item If you want to experiment with customizing templates, make a copy of template files before doing so.
+    \item Don't waste your time looking for the perfect template. Find one that's good enough, finish writing the content itself, then consider tweaking the template if you still have time.
+\end{itemize}
+
+\bibliographystyle{chicago}
+\bibliography{bibliography.bib}
+
+\appendix
+\newpage
+\section*{Appendix}
+
+\section{Defining your own environment}
+
+The syntax for creating your own custom environment is:
+
+\begin{lstlisting}
+\newenvironment{<env-name>}[<n-args>][<default>]{<begin-code>}{<end-code>}
+\end{lstlisting}
+
+\paragraph{EXAMPLE:} Suppose you wanted to create an environment for putting text in a box. Defining such an environment would look like this:
+
+\begin{lstlisting}
+\newenvironment{boxed}
+    {\begin{center}
+    \begin{tabular}{|p{0.9\textwidth}|}
+    \hline\\
+    }
+    {
+    \\\\\hline
+    \end{tabular}
+    \end{center}
+    }
+\end{lstlisting}
+
+\noindent Once our \verb|boxed| environment is defined, we can use it:
+
+\begin{lstlisting}
+\begin{boxed}
+Hello, here is some text without a meaning.
+\end{boxed}
+\end{lstlisting}
+
+\begin{boxed}
+Hello, here is some text without a meaning.
+\end{boxed}
+
+\paragraph{NOTE:} Before defining your environment, look up whether it already exists, and what packages need to be used. \textbf{Functionalities can be added to your document by using packages} (\verb|\usepackage{}|).
+
+
+\section{Abstracts}
+
+The abstract environment, often placed under the \verb|\maketitle| command, is fairly straightforward to add. For example:
+
+\begin{lstlisting}
+\begin{abstract}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. In metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Morbi enim nunc faucibus a pellentesque. Tortor condimentum lacinia quis vel eros donec ac odio tempor. A lacus vestibulum sed arcu non odio. Tincidunt dui ut ornare lectus sit amet est placerat in. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Purus non enim praesent elementum facilisis leo vel. Urna nec tincidunt praesent semper feugiat nibh sed. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Id consectetur purus ut faucibus. Nisi vitae suscipit tellus mauris.
+\end{abstract}
+\end{lstlisting}
+
+\begin{abstract}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. In metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Morbi enim nunc faucibus a pellentesque. Tortor condimentum lacinia quis vel eros donec ac odio tempor. A lacus vestibulum sed arcu non odio. Tincidunt dui ut ornare lectus sit amet est placerat in. Nulla pharetra diam sit amet nisl suscipit adipiscing bibendum. Purus non enim praesent elementum facilisis leo vel. Urna nec tincidunt praesent semper feugiat nibh sed. Diam in arcu cursus euismod quis viverra nibh cras pulvinar. Id consectetur purus ut faucibus. Nisi vitae suscipit tellus mauris.
+\end{abstract}
+
+\end{document}
+
+\section*{Formatting I}
+
+Now that we have some familiarity with \LaTeX...
+
+\begin{itemize}
+    \item Basics: line formatting,
+    \item The environment structure (everything you need to put before/after a list/figure/table/equation/etc.)
+    \item Lists (bulleted, enumerated, nested)
+    \item Figures
+\end{itemize}
+
+\section*{Formatting II}
+
+\begin{itemize}
+    \item Tables: how to format, how to generate (tablesgenerator, Excel2LaTeX add on)
+    \item Equations
+\end{itemize}
+
+\section*{Using LaTeX in Research}
+
+\subsection*{Using/customizing templates}
+
+\begin{itemize}
+    \item How to find templates? How to customize?
+    \item Beyond articles: posters and presentations
+\end{itemize}
