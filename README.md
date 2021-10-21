@@ -6,7 +6,7 @@ This workshop will provide participants with an overview of what LaTeX is, what 
 
 ### Contact
 
-Instructors: Allison Koh [(koh@hertie-school.org)](koh@hertie-school.org) </br> and Alexander Haarmann [(haarmann@hertie-school.org)](haarmann@hertie-school.org)
+Instructors: Allison Koh [(koh@hertie-school.org)](koh@hertie-school.org) and Alexander Haarmann [(haarmann@hertie-school.org)](haarmann@hertie-school.org)
 
 
 ### License
