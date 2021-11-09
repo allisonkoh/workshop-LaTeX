@@ -1,4 +1,4 @@
-# Hertie School/CIVICA PhD Workshop: </br>A Gentle Introduction to LaTeX 
+## Hertie School/CIVICA PhD Workshop: A Gentle Introduction to LaTeX 
 
 LaTeX is a typesetting software that can be used in the preparation of all kinds of high-quality documents, presentations and posters. Since the text processing engine is based on traditional typesetting rules, it delivers superior output when compared to most word processors (e.g. MS Word) and is on par with desktop publishing programs (e.g. InDesign, Scribus). Regarding stability and resource efficiency, it is an attractive alternative to using word processors – in particular when it comes to preparing and formatting longer texts.
 
@@ -6,8 +6,7 @@ This workshop will provide participants with an overview of what LaTeX is, what 
 
 ### Contact
 
-Co-Instructor and Maintainer: Allison Koh [(koh@hertie-school.org)](koh@hertie-school.org) </br>
-Co-Instructor: Alexander Haarmann [(haarmann@hertie-school.org)](haarmann@hertie-school.org)
+Instructors: Allison Koh [(koh@hertie-school.org)](koh@hertie-school.org) and Alexander Haarmann [(haarmann@hertie-school.org)](haarmann@hertie-school.org)
 
 
 ### License
